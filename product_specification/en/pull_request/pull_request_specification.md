@@ -1,3 +1,4 @@
+New text:
 # Pull Requests Feature Specification
 
 ## List of Screens Related to This Feature
@@ -9,7 +10,6 @@
 | Pull Request Detail Screen | ・Display and edit detailed information<br>・Preview code changes<br>・Pull request review<br>・Display commit history<br>・Display and post comments | [iOS]() [Android]() |
 
 ---
-
 # Display a list of pull requests related to the user himself
 ## Screen Display Information
 
