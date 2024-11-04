@@ -17,3 +17,5 @@ jobs:
 
       - name: Run AI Translate
         run: deno task ai_translate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
