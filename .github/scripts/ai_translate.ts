@@ -61,7 +61,21 @@ async function _translate(text: string): Promise<string> {
     return content;
 }
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
+function _translateFilePath(filePath: string): string {
+    const jaPattern = "/ja/";
+    const enPattern = "/en/";
+
+    if (filePath.includes(jaPattern)) {
+        return filePath.replace(jaPattern, enPattern);
+    } else if (filePath.includes(enPattern)) {
+        return filePath.replace(enPattern, jaPattern);
+    } else {
+        throw new Error(
+            `Invalid file path: must contain either ${jaPattern} or ${enPattern}`,
+        );
+    }
+}
+
 if (import.meta.main) {
     try {
         const owner = "Dai1678";
@@ -74,6 +88,9 @@ if (import.meta.main) {
             console.log(`Original content: ${content}`);
             const translatedContent = await _translate(content);
             console.log(`Translated content: ${translatedContent}`);
+            const translatedFilePath = _translateFilePath(file.filename);
+            console.log(`Translated file path: ${translatedFilePath}`);
+            await Deno.writeTextFile(translatedFilePath, translatedContent);
         }
     } catch (error) {
         console.error(error);
