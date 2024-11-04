@@ -1,6 +1,9 @@
 name: Translate specification
 
-on: [workflow_dispatch]
+on: 
+  pull_request:
+    paths:
+      - 'product_specification/**/*.md'
 
 jobs:
   build:
@@ -16,4 +19,20 @@ jobs:
           deno-version: v2.x
 
       - name: Run AI Translate
-        run: deno run ai_translate.ts
+        run: deno task ai_translate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.event.pull_request.base.repo.owner.login }}
+          REPO: ${{ github.event.pull_request.base.repo.name }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Add translated files"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
