@@ -5,6 +5,9 @@ const client = new OpenAI({ apiKey: `${Deno.env.get("OPENAI_API_KEY")}` });
 const gptModel = "gpt-4o";
 
 const token = `${Deno.env.get("GITHUB_TOKEN")}`;
+const owner = `${Deno.env.get("OWNER")}`;
+const repo = `${Deno.env.get("REPO")}`;
+const pullNumber = Number(Deno.env.get("PULL_NUMBER"));
 
 async function fetchPullRequestFiles(
     owner: string,
@@ -78,9 +81,6 @@ function _translateFilePath(filePath: string): string {
 
 if (import.meta.main) {
     try {
-        const owner = "Dai1678";
-        const repo = "AndroidArchitectureTemplate";
-        const pullNumber = 17;
         const files = await fetchPullRequestFiles(owner, repo, pullNumber);
         for (const file of files) {
             const content = await fetchFileContent(file.raw_url);
