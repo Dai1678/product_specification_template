@@ -16,4 +16,4 @@ jobs:
           deno-version: v2.x
 
       - name: Run AI Translate
-        run: deno run ai_translate.ts
+        run: deno run .github/scripts/ai_translate.ts
