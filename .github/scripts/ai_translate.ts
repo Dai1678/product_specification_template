@@ -112,7 +112,7 @@ async function _translateExistingText(
             {
                 role: "user",
                 content:
-                    `Original text:\n${existingTranslatedText}\n\nNew text:\n${translateTargetText}`,
+                    `${existingTranslatedText}\n\n${translateTargetText}`,
             },
         ],
         model: gptModel,
