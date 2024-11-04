@@ -169,6 +169,12 @@ if (import.meta.main) {
             console.log(`Fetching content of ${file.filename}...`);
             const originalText = await fetchFileContent(file.raw_url);
 
+            // Skip files that are not product specification
+            if (!file.filename.includes("product_specification")) {
+                console.log(`Skipped file: ${file.filename}`);
+                continue;
+            }
+
             const translatedFilePath = _translateFilePath(file.filename);
             console.log(`Translated file path: ${translatedFilePath}`);
 
