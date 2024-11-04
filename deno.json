@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "ai_translate": "deno run .github/scripts/ai_translate.ts --allow-read --allow-net --allow-env"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
