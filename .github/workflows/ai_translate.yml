@@ -1,6 +1,9 @@
 name: Translate specification
 
-on: [pull_request]
+on: 
+  pull_request:
+    paths:
+      - 'product_specification/**/*.md'
 
 jobs:
   build:
