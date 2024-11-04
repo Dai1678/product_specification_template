@@ -1,18 +1,6 @@
 name: Translate specification
 
-on:
-  workflow_dispatch:
-    inputs:
-      owner:
-        description: 'Repository owner'
-        required: true
-      repo:
-        description: 'Repository name'
-        required: true
-      pull_number:
-        description: 'Pull request number'
-        required: true
-  pull_request:
+on: [pull_request]
 
 jobs:
   build:
@@ -32,9 +20,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.event.pull_request.base.repo.owner.login || github.event.inputs.owner }}
-          REPO: ${{ github.event.pull_request.base.repo.name || github.event.inputs.repo }}
-          PULL_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pull_number }}
+          OWNER: ${{ github.event.pull_request.base.repo.owner.login }}
+          REPO: ${{ github.event.pull_request.base.repo.name }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Commit and push changes
         run: |
