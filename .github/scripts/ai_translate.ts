@@ -90,6 +90,9 @@ if (import.meta.main) {
             console.log(`Translated content: ${translatedContent}`);
             const translatedFilePath = _translateFilePath(file.filename);
             console.log(`Translated file path: ${translatedFilePath}`);
+            // translatedFilePathのディレクトリが存在しない場合は作成する
+            const translatedDirPath = translatedFilePath.split("/").slice(0, -1).join("/");
+            await Deno.mkdir(translatedDirPath, { recursive: true });
             await Deno.writeTextFile(translatedFilePath, translatedContent);
         }
     } catch (error) {

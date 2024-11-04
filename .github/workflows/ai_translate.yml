@@ -3,12 +3,6 @@ name: Translate specification
 on:
   workflow_dispatch:
     inputs:
-      owner:
-        description: 'Repository owner'
-        required: true
-      repo:
-        description: 'Repository name'
-        required: true
       pull_number:
         description: 'Pull request number'
         required: true
@@ -32,8 +26,8 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.event.pull_request.base.repo.owner.login || github.event.inputs.owner }}
-          REPO: ${{ github.event.pull_request.base.repo.name || github.event.inputs.repo }}
+          OWNER: ${{ github.event.pull_request.base.repo.owner.login }}
+          REPO: ${{ github.event.pull_request.base.repo.name }}
           PULL_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pull_number }}
 
       - name: Commit and push changes
@@ -42,6 +36,6 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Add translated files"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
