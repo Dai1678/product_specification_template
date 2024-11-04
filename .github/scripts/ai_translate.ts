@@ -32,8 +32,8 @@ async function fetchPullRequestFiles(
     return files;
 }
 
-async function fetchFileContent(blobUrl: string, fileName: string) {
-    const response = await fetch(`${blobUrl}/${fileName}`);
+async function fetchFileContent(rawUrl: string) {
+    const response = await fetch(rawUrl);
 
     if (!response.ok) {
         throw new Error(`Failed to fetch file content: ${response.statusText}`);
@@ -51,10 +51,7 @@ if (import.meta.main) {
         const pullNumber = 17;
         const files = await fetchPullRequestFiles(owner, repo, pullNumber);
         for (const file of files) {
-            const content = await fetchFileContent(
-                file.blob_url,
-                file.filename,
-            );
+            const content = await fetchFileContent(file.raw_url);
             console.log(`File: ${file.filename}`);
             console.log(content);
         }
