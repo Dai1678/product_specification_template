@@ -33,12 +33,7 @@ async function fetchPullRequestFiles(
 }
 
 async function fetchFileContent(blobUrl: string) {
-    const response = await fetch(blobUrl, {
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            "Accept": "application/vnd.github.v3.raw",
-        },
-    });
+    const response = await fetch(blobUrl);
 
     if (!response.ok) {
         throw new Error(`Failed to fetch file content: ${response.statusText}`);
