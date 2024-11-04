@@ -2,11 +2,7 @@ import "jsr:@std/dotenv/load";
 import OpenAI from "openai";
 
 const client = new OpenAI({ apiKey: `${Deno.env.get("OPENAI_API_KEY")}` });
-
-const chatCompletion = await client.chat.completions.create({
-    messages: [{ role: "user", content: "tell me a joke about dinosaurs." }],
-    model: "gpt-4o",
-});
+const gptModel = "gpt-4o";
 
 const token = `${Deno.env.get("GITHUB_TOKEN")}`;
 
@@ -43,6 +39,28 @@ async function fetchFileContent(rawUrl: string) {
     return content;
 }
 
+async function _translate(text: string): Promise<string> {
+    const response = await client.chat.completions.create({
+        messages: [
+            {
+                role: "system",
+                content:
+                    "次に与えられる文章が日本語なら英語に、英語なら日本語に翻訳してください。",
+            },
+            {
+                role: "user",
+                content: text,
+            },
+        ],
+        model: gptModel,
+    });
+    const content = response.choices[0].message.content;
+    if (content === null) {
+        throw new Error("Translation response content is null");
+    }
+    return content;
+}
+
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 if (import.meta.main) {
     try {
@@ -53,7 +71,9 @@ if (import.meta.main) {
         for (const file of files) {
             const content = await fetchFileContent(file.raw_url);
             console.log(`File: ${file.filename}`);
-            console.log(content);
+            console.log(`Original content: ${content}`);
+            const translatedContent = await _translate(content);
+            console.log(`Translated content: ${translatedContent}`);
         }
     } catch (error) {
         console.error(error);
