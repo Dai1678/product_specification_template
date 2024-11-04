@@ -20,7 +20,17 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Check for [skip translate] commit message
+        id: check_skip_translate
+        run: |
+          if git log -1 --pretty=%B | grep -q '\[skip translate\]'; then
+            echo "::set-output name=skip_translate::true"
+          else
+            echo "::set-output name=skip_translate::false"
+          fi
+
       - name: Run AI Translate
+        if: steps.check_skip_translate.outputs.skip_translate == 'false'
         run: deno task ai_translate
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -30,6 +40,7 @@ jobs:
           PULL_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Commit and push changes
+        if: steps.check_skip_translate.outputs.skip_translate == 'false'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
