@@ -15,6 +15,8 @@
 
 <!--
   この変更が必要な理由を書きます。プロジェクト要件書やアプリケーションソースコードの変更PRなど、背景になる情報のURLを書いてください。  
+
+  Indicate the reason why this change is necessary. Please provide the URL of the background information, such as the project requirements document or the application source code change PR.
 -->
 
 - [Link]()
@@ -29,6 +31,8 @@
     - ユーザーがログインできる  
       - 新規  
       - iOS, Android  
+
+  List the added, changed, and scoped-out functional requirements due to this change.
 -->
 
 | 開発要件 / Dev Requirement | 新規 or 改修 / New or Edit | 実装プラットフォーム / Where | Anchor Link |
