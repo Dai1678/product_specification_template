@@ -11,8 +11,9 @@ This repository is for managing and publishing the feature specifications of you
 
 ## セットアップ / Setup
 ### テンプレートリポジトリからリポジトリを作成 / Create a repository from the template repository
+[テンプレートリポジトリ](https://github.com/Dai1678/product_specification_template)からリポジトリを作成してください。
 
-### リポジトリをクローン / Clone the repository
+Please create a repository from the [template repository](https://github.com/Dai1678/product_specification_template).
 
 ## 機能仕様書の書き方 / How to Write a Feature Specification
 ### 機能ごとにディレクトリを作成する / Create a directory for each feature
@@ -27,6 +28,11 @@ Therefore, instead of creating a specification file for each screen, create a di
 It is recommended to review the product features in advance and decide how to divide the directories.
 
 ### 機能仕様書のテンプレートから作成する
-原則、機能仕様書は[/product_specification/template.md](product_specification/ja/template/template.md)をコピーして作成してください。  
+原則、機能仕様書は[/product_specification/template/template.md](product_specification/template/template.md)をコピーして作成してください。  
 
-In principle, create a feature specification by copying [/product_specification/template.md](product_specification/ja/template/template.md).
+In principle, create a feature specification by copying [/product_specification/template/template.md](product_specification/template/template.md).
+
+### 翻訳が必要な場合 / If translation is required
+翻訳が必要な場合は、翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで自動翻訳のワークフロー (ai_translate.yml) を実行してください。
+
+If translation is required, add the original file to `product_specification/en/` and run the automatic translation workflow with GitHub Actions (ai_translate.yml).

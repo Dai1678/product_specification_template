@@ -1,9 +1,7 @@
 name: Translate specification
+description: Translate product specification using OpenAI.
 
-on: 
-  pull_request:
-    paths:
-      - 'product_specification/**/*.md'
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -19,15 +17,6 @@ jobs:
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-
-      - name: Check for [skip translate] commit message
-        id: check_skip_translate
-        run: |
-          if git log -1 --pretty=%B | grep -q '\[skip translate\]'; then
-            echo "skip_translate=true" >> $GITHUB_OUTPUT
-          else
-            echo "skip_translate=false" >> $GITHUB_OUTPUT
-          fi
 
       - name: Run AI Translate
         if: steps.check_skip_translate.outputs.skip_translate == 'false'
