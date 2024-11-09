@@ -1,5 +1,8 @@
 name: textlint
-on: [pull_request]
+on: 
+  pull_request
+    paths:
+      - "*.md"
 
 jobs:
   textlint:
