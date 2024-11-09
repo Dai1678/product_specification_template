@@ -15,6 +15,13 @@ This repository is for managing and publishing the feature specifications of you
 
 Please create a repository from the [template repository](https://github.com/Dai1678/product_specification_template).
 
+### 翻訳機能を使うためにOpenAIのAPIキーを取得 / Get an OpenAI API key to use the translation feature
+翻訳機能を使うためには、OpenAIのAPIキーが必要です。  
+[OpenAIのサイト](https://platform.openai.com/api-keys)からAPIキーを取得してください。
+
+To use the translation feature, you need an OpenAI API key.  
+Please obtain an API key from the [OpenAI website](https://platform.openai.com/api-keys).
+
 ## 機能仕様書の書き方 / How to Write a Feature Specification
 ### 機能ごとにディレクトリを作成する / Create a directory for each feature
 シンプルな機能しかない画面では書くことがあまりないため、画面ごとに仕様書のファイルを作成するのではなく、  
