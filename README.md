@@ -7,7 +7,8 @@ This repository is for managing and publishing the feature specifications of you
 ---
 
 ## このリポジトリで管理するもの / Items Managed in This Repository
-- [/product_specification](./product_specification): プロダクトの機能仕様書を管理するディレクトリ / Directory for managing product feature specifications
+- [/product_specification](./product_specification): プロダクトの機能仕様書を管理するディレクトリ  
+Directory for managing product feature specifications
 
 ## セットアップ / Setup
 ### テンプレートリポジトリからリポジトリを作成 / Create a repository from the template repository
@@ -24,15 +25,12 @@ Please obtain an API key from the [OpenAI website](https://platform.openai.com/a
 
 ## 機能仕様書の書き方 / How to Write a Feature Specification
 ### 機能ごとにディレクトリを作成する / Create a directory for each feature
-シンプルな機能しかない画面では書くことがあまりないため、画面ごとに仕様書のファイルを作成するのではなく、  
-機能ごとにディレクトリを作成してその中に仕様書のファイルを作成してください。
+画面ごとに仕様書を作成するのではなく、機能ごとにディレクトリを作成し、その中に仕様書を作成してください。
 
-予めプロダクトの機能を確認して、どのようにディレクトリを分けるかを決めておくと良いでしょう。
+プロダクトの機能を確認し、ディレクトリの分け方を決めておくと良いでしょう。
 
-For screens with only simple features, there may not be much to write.  
-Therefore, instead of creating a specification file for each screen, create a directory for each feature and create the specification file within that directory.
-
-It is recommended to review the product features in advance and decide how to divide the directories.
+Create a directory for each feature instead of creating a specification file for each screen.  
+Review the product features and decide how to divide the directories.
 
 ### 機能仕様書のテンプレートから作成する
 原則、機能仕様書は[/product_specification/template/template.md](product_specification/template/template.md)をコピーして作成してください。  
@@ -40,6 +38,6 @@ It is recommended to review the product features in advance and decide how to di
 In principle, create a feature specification by copying [/product_specification/template/template.md](product_specification/template/template.md).
 
 ### 翻訳が必要な場合 / If translation is required
-翻訳が必要な場合は、翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで自動翻訳のワークフロー (ai_translate.yml) を実行してください。
+翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで`ai_translate.yml`を実行してください。
 
-If translation is required, add the original file to `product_specification/en/` and run the automatic translation workflow with GitHub Actions (ai_translate.yml).
+Add the original file to `product_specification/en/` and run `ai_translate.yml` with GitHub Actions.
