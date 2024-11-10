@@ -4,6 +4,8 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
-    "openai": "npm:openai@^4.70.2"
+    "openai": "npm:openai@^4.70.2",
+    "textlint": "npm:textlint@^14.0.0",
+    "textlint-rule-preset-ja-technical-writing": "npm:textlint-rule-preset-ja-technical-writing@^10.0.1"
   }
 }
