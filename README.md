@@ -38,6 +38,6 @@ Review the product features and decide how to divide the directories.
 In principle, create a feature specification by copying [/product_specification/template/template.md](product_specification/template/template.md).
 
 ### 翻訳が必要な場合 / If translation is required
-翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで`ai_translate.yml`を実行してください。。
+翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで`ai_translate.yml`を実行してください。
 
 Add the original file to `product_specification/en/` and run `ai_translate.yml` with GitHub Actions.
