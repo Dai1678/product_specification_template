@@ -18,7 +18,7 @@ Please write the function name.
 仕様書の作成先のディレクトリが決まっていたら記載してください。
 If you have decided on the directory where you will create the specifications, please enter it here.
 -->
-`product_specification/*/`
+`docs/*/`
  
 ## この機能に関連する画面の一覧 / List of Screens Related to This Feature
 

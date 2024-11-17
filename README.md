@@ -68,9 +68,9 @@ $ git switch -c {branch_name}
 ```
 
 ## 翻訳が必要な場合 / If translation is required
-翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで`ai_translate.yml`を実行してください。
+翻訳元のファイルを `docs/ja/` に追加し、GitHub Actionsで`ai_translate.yml`を実行してください。
 
-Add the original file to `product_specification/en/` and run `ai_translate.yml` with GitHub Actions.
+Add the original file to `docs/en/` and run `ai_translate.yml` with GitHub Actions.
 
 ## ドキュメントの公開 / Publishing Documents
 このテンプレートリポジトリではドキュメントの公開機能は提供していません。  

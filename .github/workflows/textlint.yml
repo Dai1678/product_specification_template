@@ -1,5 +1,8 @@
 name: textlint
-on: [pull_request]
+on: 
+  pull_request:
+    paths:
+      - '**/*.md'
 
 jobs:
   textlint_review:
@@ -26,11 +29,7 @@ jobs:
       - name: Run textlint
         run: |
           git diff origin/${{ github.event.pull_request.base.ref }} HEAD --diff-filter=AM --name-only | grep \.md$ > changed_files.txt
-          if [ -s changed_files.txt ]; then
-            cat changed_files.txt | xargs deno run --allow-env --allow-read --allow-write --allow-sys textlint.ts
-          else
-            echo "No markdown files changed."
-          fi
+          cat changed_files.txt | xargs deno run --allow-env --allow-read --allow-write --allow-sys .github/scripts/textlint.ts
 
       - name: Run reviewdog
         if: ${{ failure() }}
