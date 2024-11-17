@@ -87,8 +87,12 @@
 
 ## 翻訳 / Translation
 
-翻訳が必要な場合は、翻訳元のファイルを `product_specification/ja/` に追加し、GitHub Actionsで自動翻訳のワークフロー (ai_translate.yml) を実行してください。  
+翻訳が必要な場合は、翻訳元のファイルを `docs/ja/` に追加してください。  
+GitHub Actionsで[ai_translate](https://github.com/moneyforward/ca_mobile_document/actions/workflows/ai_translate.yml)を実行すると翻訳されたファイルがコミットされます。  
+実行する際は、ワークフローの実行ブランチをPRのブランチに変更してください。  
 APIのコスト削減のため、翻訳対象のファイル数と翻訳実行回数はできるだけ最小限に抑えてください。
 
-If translation is required, add the original file to `product_specification/en/` and run the automatic translation workflow with GitHub Actions (ai_translate.yml).  
-To reduce API costs, please minimize the number of files to be translated and the number of translation executions as much as possible.
+If translation is required, add the source file to `docs/ja/`.  
+When you run [ai_translate](https://github.com/moneyforward/ca_mobile_document/actions/workflows/ai_translate.yml) with GitHub Actions, the translated file will be committed.  
+When running the workflow, change the branch to the PR branch.  
+To save on API costs, minimize the number of files and translation runs.

@@ -1,7 +1,16 @@
 name: Translate specification
-description: Translate product specification using OpenAI.
 
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      translate_launguage:
+        description: 'Translate into the selected language'
+        required: true
+        default: 'en'
+        type: choice
+        options:
+          - 'en'
+          - 'ja'
 
 jobs:
   build:
@@ -10,31 +19,35 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
+      - name: Get Pull Request Number
+        id: get_pr_number
+        run: |
+          PR_NUMBER=$(gh pr list --state open --head "${{ github.ref_name }}" --json number --jq '.[0].number')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run AI Translate
-        if: steps.check_skip_translate.outputs.skip_translate == 'false'
         run: deno task ai_translate
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.event.pull_request.base.repo.owner.login }}
-          REPO: ${{ github.event.pull_request.base.repo.name }}
-          PULL_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          PULL_NUMBER: ${{ steps.get_pr_number.outputs.PR_NUMBER }}
+          TRANSLATE_LANGUAGE: ${{ github.event.inputs.translate_launguage }}
 
       - name: Commit and push changes
-        if: steps.check_skip_translate.outputs.skip_translate == 'false'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Add translated files"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
